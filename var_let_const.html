@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var fname = "swapnil"; //global scope
+        var fname = "virat"; // re-decalare allow
+        fname = "gajanan";   //re-assign allow
+
+        document.write(fname+"<br>");
+
+        let lname =" ogale";  //block or function scope
+        // let lname =" pansare "; // re-decalare not allow
+        lname =" mutke"; //re-assign allow
+
+        document.write(lname + "<br>")
+
+        const cname = "fct";  //block or function scope
+        //const cname = "tcs"; // re-decalare not allow
+        //cname = "pbks"; //re-assign not allow
+
+        document.write(cname+ "<br>");
+    </script>
+
+    <script>
+        if(10==10){
+            var x = "hello";
+            let y = "virat";
+            const z = "anushka";
+
+            document.write(y); // block scope
+            document.write(z); // block scope
+        }
+        document.write(x);
+        //document.write(y);
+        //document.write(z);
+    </script>
+    <script>
+        document.write(x);
+    </script>
+</body>
+</html>
