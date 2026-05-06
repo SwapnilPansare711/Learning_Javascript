@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Book Store</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f4f4f4}
+
+header{background:#111;color:white;padding:15px;text-align:center}
+
+nav{display:flex;justify-content:space-between;padding:10px 20px;background:#333;color:white}
+nav input{padding:5px;border-radius:5px;border:none}
+
+.container{padding:20px}
+
+.books,.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+
+.card{background:white;padding:15px;border-radius:10px;text-align:center;box-shadow:0 5px 10px rgba(0,0,0,0.1);transition:0.3s;cursor:pointer}
+.card:hover{transform:scale(1.05)}
+.card img{width:100%;height:200px;object-fit:cover;border-radius:10px}
+.card button{margin-top:10px;padding:8px 15px;border:none;background:#38bdf8;color:white;border-radius:5px;cursor:pointer}
+
+.category-card{background:#38bdf8;color:white;font-weight:bold;padding:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+
+.cart-box{position:fixed;right:20px;top:70px;width:250px;background:white;padding:15px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);display:none}
+
+.cart-btn{position:fixed;right:20px;top:20px;background:#38bdf8;color:white;padding:10px;border-radius:50%;cursor:pointer}
+
+</style></head><body><header>
+<h1>Online Book Store</h1>
+</header><nav>
+<div>📚 Books</div>
+<input type="text" id="search" placeholder="Search books..." onkeyup="searchBooks()">
+</nav><div class="cart-btn" onclick="toggleCart()">🛒</div><div class="cart-box" id="cartBox">
+<h3>Cart</h3>
+<div id="cartItems"></div>
+<p id="total"></p>
+</div><div class="container"><h2>Categories</h2>
+<div class="categories">
+<div class="category-card" onclick="filterCategory('fiction')">Fiction</div>
+<div class="category-card" onclick="filterCategory('nonfiction')">Non-Fiction</div>
+<div class="category-card" onclick="filterCategory('history')">History</div>
+<div class="category-card" onclick="filterCategory('gov')">Gov Exams</div>
+<div class="category-card" onclick="filterCategory('motivational')">Motivational</div>
+<div class="category-card" onclick="displayBooks(books)">All</div>
+</div><h2 style="margin-top:30px">Books</h2>
+<div class="books" id="bookList"></div></div><script>
+// Generate 100 books per category automatically
+const categories=["fiction","nonfiction","history","gov","motivational"];
+let books=[];
+
+categories.forEach(cat=>{
+for(let i=1;i<=100;i++){
+books.push({
+name:`${cat.toUpperCase()} Book ${i}`,
+price:Math.floor(Math.random()*500)+100,
+cat:cat,
+img:"https://via.placeholder.com/200"
+});
+}
+});
+
+let cart=[];
+
+function displayBooks(list){
+const bookList=document.getElementById("bookList");
+bookList.innerHTML="";
+list.forEach(b=>{
+bookList.innerHTML+=`
+<div class="card">
+<img src="${b.img}">
+<h3>${b.name}</h3>
+<p>₹${b.price}</p>
+<button onclick="addToCart('${b.name}',${b.price})">Add</button>
+</div>`;
+});
+}
+
+displayBooks(books);
+
+function filterCategory(cat){
+let filtered=books.filter(b=>b.cat===cat);
+displayBooks(filtered);
+}
+
+function addToCart(name,price){
+cart.push({name,price});
+updateCart();
+}
+
+function updateCart(){
+let items="";
+let total=0;
+cart.forEach(i=>{
+items+=`<p>${i.name} - ₹${i.price}</p>`;
+total+=i.price;
+});
+
+document.getElementById("cartItems").innerHTML=items;
+document.getElementById("total").innerText="Total: ₹"+total;
+}
+
+function toggleCart(){
+let box=document.getElementById("cartBox");
+box.style.display=box.style.display==="block"?"none":"block";
+}
+
+function searchBooks(){
+let val=document.getElementById("search").value.toLowerCase();
+let filtered=books.filter(b=>b.name.toLowerCase().includes(val));
+displayBooks(filtered);
+}
+</script></body>
+</html>

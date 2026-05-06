@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = {
+          fname : "Anand",
+          lname : "Ogale",
+          email : "swapnil@gmail.com",
+          phone : 7777777777,
+          players : ["VIRAT","Yuvraj","Rohit","Sachin","MSD"], //array in object
+          address : {  //object within object
+            city : "Junner",
+            country: "India"
+          },
+          massage : "Todays Match SRH Vs Panjab"
+
+        };
+        document.write("My Name is "+a.fname + " " + a.lname + "Email ID is " + a.email + "My Fav Player Is" + a.players[0] + "My City name is" + a.address.city + "<br>");
+
+        document.write(`my name is ${a.fname} ${a.lname} , my email id is ${a.email}, my phone ${a.phone} `);
+    </script>
+</body>
+</html>

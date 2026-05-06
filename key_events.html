@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+
+    <button onclick="hello()">Single Click</button>
+    <button ondblclick="hello()">Double Click</button>
+    <button oncontextmenu="hello()">right click</button>
+    <button onmouseenter="hello()">on mouse click</button>
+    <button onmouseout="hello()">on mouse out</button>
+    <button onmouseover="hello()">on mouse over</button>
+    <button onkeyup="hello()">on key up</button>
+    <br><br><br><br><br>
+    <input type="text" id="name" onblur="hello()">
+    <input type="text" onchange="hello()">
+    <video width="300" controls onended="hello()">
+        <source src="docs/file_example_MP4_640_3MG.mp4">
+    </video>
+    <p draggable="true" ondrag="hello()">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, facere praesentium? Pariatur, maxime excepturi quam nam consectetur deleniti aliquid quibusdam vitae ab voluptates soluta, explicabo quia distinctio quae ipsam? Sapiente.</p>
+
+
+    <script>
+        function hello(){
+            alert("hello its swapnil");
+        }
+    </script>
+</body>
+</html>

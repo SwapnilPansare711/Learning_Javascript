@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Portfolio</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+html{scroll-behavior:smooth}
+body{background:#0f172a;color:white;transition:0.4s}
+
+/* Dark/Light Mode */
+body.light{background:#f4f4f4;color:#111}
+body.light .card{background:white;color:black}
+
+header{display:flex;justify-content:space-between;padding:20px 50px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000}
+header h1{color:#38bdf8}
+
+nav a{margin:0 15px;color:white;text-decoration:none;position:relative}
+nav a::after{content:'';position:absolute;width:0;height:2px;background:#38bdf8;bottom:-5px;left:0;transition:0.3s}
+nav a:hover::after{width:100%}
+
+.toggle{cursor:pointer;border:1px solid #38bdf8;padding:5px 10px;border-radius:10px}
+
+.hero{height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hero img{width:150px;height:150px;border-radius:50%;border:3px solid #38bdf8;box-shadow:0 0 20px #38bdf8;margin-bottom:20px}
+.hero span{color:#38bdf8}
+.hero button{margin-top:20px;padding:10px 20px;border:none;border-radius:25px;background:#38bdf8;cursor:pointer}
+
+section{padding:60px 50px}
+
+.card{background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;margin-top:20px;transition:0.3s}
+.card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 10px 30px rgba(56,189,248,0.3)}
+
+.skills,.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+
+/* Skill bars */
+.bar{background:#1e293b;border-radius:10px;overflow:hidden}
+.bar div{height:10px;background:#38bdf8}
+
+.project-card img{width:100%;border-radius:10px}
+.project-card a{display:inline-block;margin-top:10px;color:#38bdf8;text-decoration:none}
+
+footer{text-align:center;padding:20px;background:rgba(255,255,255,0.05)}
+</style></head><body><header>
+<h1>Swapnil</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+<span class="toggle" onclick="toggleMode()">Mode</span>
+</nav>
+</header><div class="hero">
+<img src="image/ganpti.png" alt="profile">
+<h2>Hello, I'm <span>Swapnil</span></h2>
+<p id="typing"></p>
+<button onclick="scrollToSection('projects')">View Work</button>
+</div><section id="about" data-aos="fade-up">
+<h2>About Me</h2>
+<div class="card">Passionate developer building modern UI.</div>
+</section><section id="skills" data-aos="zoom-in">
+<h2>Skills</h2>
+<div class="skills">
+<div class="card">HTML<div class="bar"><div style="width:90%"></div></div></div>
+<div class="card">CSS<div class="bar"><div style="width:85%"></div></div></div>
+<div class="card">JavaScript<div class="bar"><div style="width:75%"></div></div></div>
+</div>
+</section><section id="projects" data-aos="fade-up">
+<h2>Projects</h2>
+<div class="projects">
+<div class="card project-card">
+<img src="https://via.placeholder.com/300x200">
+<p>Book Seller Website</p>
+<a href="#">Live Demo</a>
+</div>
+<div class="card project-card">
+<img src="https://via.placeholder.com/300x200">
+<p>Portfolio Website</p>
+<a href="#">GitHub</a>
+</div>
+</div>
+</section><section id="contact" data-aos="fade-up">
+<h2>Contact</h2>
+<div class="card">Email: your@email.com</div>
+</section><footer>© 2026 Swapnil</footer><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script><script>
+AOS.init();
+
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+function toggleMode(){document.body.classList.toggle('light')}
+
+// Typing effect
+const roles=["Web Developer","Frontend Developer","Designer"];
+let i=0,j=0,cur='',del=false;
+function type(){
+cur=roles[i];
+if(!del){document.getElementById('typing').innerText=cur.substring(0,j++);
+if(j>cur.length){del=true;setTimeout(type,1000);return}}
+else{document.getElementById('typing').innerText=cur.substring(0,j--);
+if(j==0){del=false;i=(i+1)%roles.length}}
+setTimeout(type,del?50:100)}
+type();
+
+// GSAP animation
+gsap.from(".hero h2",{y:-50,opacity:0,duration:1});
+gsap.from(".hero img",{scale:0,opacity:0,duration:1});
+</script></body>
+</html>
